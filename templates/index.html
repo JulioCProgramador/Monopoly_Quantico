@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monopoly Quântico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-glyph">⚛</span>
+      <div>
+        <h1>Monopoly Quântico</h1>
+        <p class="tagline">o dado colapsa. o mercado, não perdoa.</p>
+      </div>
+    </div>
+    <div class="wallet-area">
+      <button class="wallet-btn" id="wallet-btn">📁 carteira</button>
+      <div class="wallet">
+        <span class="wallet-label">patrimônio</span>
+        <span class="wallet-value" id="wallet-value">$ 10.000,00</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="board-wrap">
+
+    <div class="board" id="board"><!-- tiles injetados via JS --></div>
+
+    <div class="center-panel">
+      <div class="die-zone">
+        <div class="die" id="die">
+          <span id="die-face">?</span>
+        </div>
+        <button class="roll-btn" id="roll-btn">jogar o dado</button>
+        <p class="die-hint" id="die-hint">porta Hadamard em superposição</p>
+      </div>
+
+      <div class="log" id="log">
+        <p class="log-empty">o jogo começa quando você jogar o dado pela primeira vez.</p>
+      </div>
+    </div>
+
+  </main>
+
+</div>
+
+<!-- Modal de decisão / relatório do ativo -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modal-close">×</button>
+    <div class="modal-head">
+      <span class="modal-ticker" id="modal-ticker">AAPL</span>
+      <span class="modal-price" id="modal-price">$ --</span>
+      <span class="modal-change" id="modal-change">--%</span>
+    </div>
+
+    <svg class="modal-chart" id="modal-chart" viewBox="0 0 400 120" preserveAspectRatio="none"></svg>
+
+    <div class="chart-legend">
+      <span class="legend-item"><i class="dot price"></i>preço</span>
+      <span class="legend-item"><i class="dot sma20"></i>média 20d</span>
+      <span class="legend-item"><i class="dot sma50"></i>média 50d</span>
+    </div>
+
+    <div class="stats-grid" id="stats-grid">
+      <div class="stat"><span class="stat-label">volatilidade (anual.)</span><span class="stat-value" id="stat-vol">--</span></div>
+      <div class="stat"><span class="stat-label">máxima (6m)</span><span class="stat-value" id="stat-high">--</span></div>
+      <div class="stat"><span class="stat-label">mínima (6m)</span><span class="stat-value" id="stat-low">--</span></div>
+      <div class="stat"><span class="stat-label">volume médio</span><span class="stat-value" id="stat-volume">--</span></div>
+    </div>
+
+    <p class="modal-caption" id="modal-source">fonte: —</p>
+
+    <div class="qty-control">
+      <label class="qty-label" for="qty-input">quantidade de cotas</label>
+      <div class="qty-input-row">
+        <button type="button" class="qty-step" id="qty-dec">−</button>
+        <input type="number" id="qty-input" min="0" step="1" value="0">
+        <button type="button" class="qty-step" id="qty-inc">+</button>
+      </div>
+      <div class="qty-meta">
+        <span id="qty-cost">≈ $ 0,00</span>
+        <span id="qty-owned"></span>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="action-btn buy" id="btn-buy">comprar</button>
+      <button class="action-btn sell" id="btn-sell">vender</button>
+      <button class="action-btn skip" id="btn-skip">passar</button>
+    </div>
+
+    <div class="modal-analysis" id="modal-analysis">
+      <p class="analysis-stub" id="analysis-placeholder">compre ou venda para receber uma análise sobre a decisão.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal da carteira de investimentos -->
+<div class="modal-overlay" id="wallet-modal-overlay">
+  <div class="modal wallet-modal" id="wallet-modal">
+    <button class="modal-close" id="wallet-modal-close">×</button>
+    <h2 class="wallet-modal-title">Carteira de Investimento</h2>
+
+    <div class="wallet-summary">
+      <div class="wallet-summary-item">
+        <span class="stat-label">caixa disponível</span>
+        <span class="stat-value" id="wallet-cash">$ --</span>
+      </div>
+      <div class="wallet-summary-item">
+        <span class="stat-label">investido (custo)</span>
+        <span class="stat-value" id="wallet-invested">$ --</span>
+      </div>
+      <div class="wallet-summary-item">
+        <span class="stat-label">patrimônio total</span>
+        <span class="stat-value" id="wallet-total">$ --</span>
+      </div>
+    </div>
+
+    <div class="holdings-list" id="holdings-list">
+      <p class="holdings-empty">nenhuma posição ainda — compre um ativo caindo numa casa do tabuleiro.</p>
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
