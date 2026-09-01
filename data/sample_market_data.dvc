@@ -1,0 +1,6 @@
+outs:
+- md5: d32e34730d14830bfd42cdf49c6b3f27.dir
+  size: 27269
+  nfiles: 8
+  hash: md5
+  path: sample_market_data
