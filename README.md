@@ -92,8 +92,8 @@ POST /api/analyze ─── monta prompt com dados reais → Groq (LLM)
 
 ```bash
 # 1. Clone o repositório
-git clone <url-do-seu-repositório>
-cd monopoly_quantico
+git clone <https://github.com/JulioCProgramador/Monopoly_Quantico.git>
+cd "O_Caminho_na_sua_máquina\monopoly_quantico"
 
 # 2. Crie um ambiente virtual (recomendado)
 python -m venv venv
