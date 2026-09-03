@@ -1,5 +1,5 @@
 """
-Monopoly Quântico — Fase 4
+Monopoly Quântico
 ---------------------------
 Backend Flask que expõe:
   - GET  /api/roll            -> resultado do dado quântico (1-6, via Qiskit)
@@ -9,21 +9,26 @@ Backend Flask que expõe:
   - POST /api/analyze         -> análise via LLM (Groq) sobre a decisão de compra/venda, com cache
 
 Requisitos:
-    pip install flask yfinance qiskit qiskit-aer groq
+    pip install flask yfinance qiskit qiskit-aer groq python-dotenv
 
-Variável de ambiente necessária para a Fase 3/4:
+Variável de ambiente necessária:
     GROQ_API_KEY   (chave gratuita da Groq — console.groq.com/keys)
+    Pode vir de um arquivo .env na raiz do projeto (veja .env.example) ou de uma
+    variável de ambiente do sistema — o que já estiver configurado tem prioridade.
 """
 
 from flask import Flask, jsonify, render_template, request
 from qiskit import QuantumCircuit
 from qiskit_aer import AerSimulator
 from collections import OrderedDict
+from dotenv import load_dotenv
 import yfinance as yf
 import random
 import statistics
 import os
 from groq import Groq
+
+load_dotenv()  # lê o arquivo .env (se existir) e carrega suas variáveis em os.environ
 
 app = Flask(__name__)
 _simulator = AerSimulator()
