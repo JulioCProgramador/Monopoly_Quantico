@@ -5,3 +5,4 @@ qiskit-aer>=0.14
 groq>=0.9
 python-dotenv>=1.0
 pytest>=8.0
+
