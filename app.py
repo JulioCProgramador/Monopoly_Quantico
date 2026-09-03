@@ -11,7 +11,7 @@ Backend Flask que expõe:
 Requisitos:
     pip install flask yfinance qiskit qiskit-aer groq python-dotenv
 
-Variável de ambiente necessária para a Fase 3/4:
+Variável de ambiente necessária:
     GROQ_API_KEY   (chave gratuita da Groq — console.groq.com/keys)
     Pode vir de um arquivo .env na raiz do projeto (veja .env.example) ou de uma
     variável de ambiente do sistema — o que já estiver configurado tem prioridade.
